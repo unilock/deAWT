@@ -1,0 +1,10 @@
+@nilmod {
+	name: "deAWT";
+	description: "WIP";
+	authors: "unilock";
+	version: "${version}";
+}
+
+entrypoints {
+	premain: "cc.unilock.deawt.DeAWTPremain";
+}
