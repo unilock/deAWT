@@ -9,18 +9,8 @@ import nilloader.api.lib.mini.annotation.Patch;
 
 @Patch.Class("net.minecraft.client.MinecraftApplet")
 public class MinecraftAppletTransformer extends MiniTransformer {
-//	@Patch.Method("init()V")
-//	public void patchInit(PatchContext ctx) {
-//		ctx.jumpToStart();
-//		ctx.add(
-//				ALOAD(0),
-//				INVOKESTATIC("cc/unilock/deawt/transformer/MinecraftAppletTransformer$Hooks", "init", "(Lnet/minecraft/client/MinecraftApplet;)V"),
-//				RETURN()
-//		);
-//	}
-
-	@Patch.Method("fmlInitReentry()V")
-	public void patchFmlInitReentry(PatchContext ctx) {
+	@Patch.Method("init()V")
+	public void patchInit(PatchContext ctx) {
 		ctx.jumpToStart();
 		ctx.add(
 				ALOAD(0),
@@ -29,17 +19,27 @@ public class MinecraftAppletTransformer extends MiniTransformer {
 		);
 	}
 
-//	@Patch.Method("start()V")
-//	public void patchStart(PatchContext ctx) {
-//		ctx.jumpToStart();
-//		ctx.add(RETURN());
-//	}
-
-	@Patch.Method("fmlStartReentry()V")
-	public void patchFmlStartReentry(PatchContext ctx) {
+	@Patch.Method("start()V")
+	public void patchStart(PatchContext ctx) {
 		ctx.jumpToStart();
 		ctx.add(RETURN());
 	}
+
+//	@Patch.Method("fmlInitReentry()V")
+//	public void patchFmlInitReentry(PatchContext ctx) {
+//		ctx.jumpToStart();
+//		ctx.add(
+//				ALOAD(0),
+//				INVOKESTATIC("cc/unilock/deawt/transformer/MinecraftAppletTransformer$Hooks", "init", "(Lnet/minecraft/client/MinecraftApplet;)V"),
+//				RETURN()
+//		);
+//	}
+
+//	@Patch.Method("fmlStartReentry()V")
+//	public void patchFmlStartReentry(PatchContext ctx) {
+//		ctx.jumpToStart();
+//		ctx.add(RETURN());
+//	}
 
 	@Patch.Method("stop()V")
 	public void patchStop(PatchContext ctx) {
