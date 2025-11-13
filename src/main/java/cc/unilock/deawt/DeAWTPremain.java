@@ -1,5 +1,7 @@
 package cc.unilock.deawt;
 
+import cc.unilock.deawt.transformer.DisplayTransformer;
+import cc.unilock.deawt.transformer.FMLRelauncherTransformer;
 import cc.unilock.deawt.transformer.MinecraftAppletTransformer;
 import nilloader.api.ClassTransformer;
 import nilloader.api.ModRemapper;
@@ -12,6 +14,8 @@ public class DeAWTPremain implements Runnable {
 	public void run() {
 		ModRemapper.setTargetMapping("default");
 
+		ClassTransformer.register(new DisplayTransformer());
+		ClassTransformer.register(new FMLRelauncherTransformer());
 		ClassTransformer.register(new MinecraftAppletTransformer());
 	}
 }
