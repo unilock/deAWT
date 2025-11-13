@@ -10,12 +10,11 @@ public class FMLRelauncherTransformer extends MiniTransformer {
 	public void patchShowWindow(PatchContext ctx) {
 		ctx.search(
 				PUTFIELD("cpw/mods/fml/relauncher/FMLRelauncher", "popupWindow", "Ljavax/swing/JDialog;")
-		).jumpAfter();
+		).jumpBefore();
 
 		ctx.add(
-				ALOAD(0),
-				ACONST_NULL(),
-				PUTFIELD("cpw/mods/fml/relauncher/FMLRelauncher", "popupWindow", "Ljavax/swing/JDialog;")
+				POP(),
+				ACONST_NULL()
 		);
 	}
 }
