@@ -16,7 +16,9 @@ public class MouseHelperTransformer extends MiniTransformer {
 				GOTO(Lskip)
 		);
 
-		ctx.search(ILOAD(1)).jumpBefore();
+		ctx.search(
+				ILOAD(1)
+		).jumpBefore();
 		ctx.add(
 				Lskip,
 				INVOKESTATIC("org/lwjgl/opengl/Display", "getWidth", "()I"),

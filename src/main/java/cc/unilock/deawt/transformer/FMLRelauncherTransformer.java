@@ -7,7 +7,6 @@ import nilloader.api.lib.mini.annotation.Patch;
 @Patch.Class("cpw.mods.fml.relauncher.FMLRelauncher")
 public class FMLRelauncherTransformer extends MiniTransformer {
 	@Patch.Method("showWindow(Z)V")
-	@Patch.Method.AffectsControlFlow
 	public void patchShowWindow(PatchContext ctx) {
 		ctx.jumpToStart();
 		ctx.add(
