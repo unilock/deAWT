@@ -1,9 +1,6 @@
 package cc.unilock.deawt;
 
-import cc.unilock.deawt.transformer.DisplayTransformer;
-import cc.unilock.deawt.transformer.MinecraftAppletTransformer;
-import cc.unilock.deawt.transformer.MinecraftTransformer;
-import cc.unilock.deawt.transformer.MouseHelperTransformer;
+import cc.unilock.deawt.transformer.*;
 import nilloader.api.ClassTransformer;
 import nilloader.api.ModRemapper;
 import nilloader.api.NilLogger;
@@ -15,10 +12,28 @@ public class DeAWTPremain implements Runnable {
 	public void run() {
 		ModRemapper.setTargetMapping("default");
 
-		ClassTransformer.register(new DisplayTransformer());
-//		ClassTransformer.register(new FMLRelauncherTransformer());
 		ClassTransformer.register(new MinecraftAppletTransformer());
+		if (isFML()) {
+			LOGGER.info("deAWT running on FML!");
+			ClassTransformer.register(new FMLMinecraftAppletTransformer());
+			ClassTransformer.register(new FMLRelauncherTransformer());
+		} else {
+			LOGGER.info("deAWT running on Vanilla!");
+			ClassTransformer.register(new VanillaMinecraftAppletTransformer());
+		}
+
+		ClassTransformer.register(new DisplayTransformer());
 		ClassTransformer.register(new MinecraftTransformer());
 		ClassTransformer.register(new MouseHelperTransformer());
+	}
+
+	private boolean isFML() {
+		return true;
+//		try {
+//			Class.forName("cpw.mods.fml.relauncher.FMLRelauncher", false, this.getClass().getClassLoader());
+//			return true;
+//		} catch (ClassNotFoundException ignored) {
+//			return false;
+//		}
 	}
 }

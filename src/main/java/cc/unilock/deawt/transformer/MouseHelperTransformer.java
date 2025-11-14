@@ -12,16 +12,20 @@ public class MouseHelperTransformer extends MiniTransformer {
 		LabelNode Lskip = new LabelNode();
 
 		ctx.jumpToStart();
-		ctx.add(GOTO(Lskip));
+		ctx.add(
+				GOTO(Lskip)
+		);
 
-		ctx.search(
-				ILOAD(1)
-		).jumpBefore();
+		ctx.search(ILOAD(1)).jumpBefore();
 		ctx.add(
 				Lskip,
 				INVOKESTATIC("org/lwjgl/opengl/Display", "getWidth", "()I"),
+				ICONST_2(),
+				IDIV(),
 				ISTORE(1),
 				INVOKESTATIC("org/lwjgl/opengl/Display", "getHeight", "()I"),
+				ICONST_2(),
+				IDIV(),
 				ISTORE(2)
 		);
 	}

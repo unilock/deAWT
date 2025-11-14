@@ -7,14 +7,15 @@ import nilloader.api.lib.mini.annotation.Patch;
 @Patch.Class("cpw.mods.fml.relauncher.FMLRelauncher")
 public class FMLRelauncherTransformer extends MiniTransformer {
 	@Patch.Method("showWindow(Z)V")
+	@Patch.Method.AffectsControlFlow
 	public void patchShowWindow(PatchContext ctx) {
-		ctx.search(
-				PUTFIELD("cpw/mods/fml/relauncher/FMLRelauncher", "popupWindow", "Ljavax/swing/JDialog;")
-		).jumpBefore();
-
+		ctx.jumpToStart();
 		ctx.add(
-				POP(),
-				ACONST_NULL()
+				NEW("cpw/mods/fml/relauncher/DummyDownloader"),
+				DUP(),
+				INVOKESPECIAL("cpw/mods/fml/relauncher/DummyDownloader", "<init>", "()V"),
+				PUTSTATIC("cpw/mods/fml/relauncher/RelaunchLibraryManager", "downloadMonitor", "Lcpw/mods/fml/relauncher/IDownloadDisplay;"),
+				RETURN()
 		);
 	}
 }
