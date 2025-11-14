@@ -28,12 +28,6 @@ public class DeAWTPremain implements Runnable {
 	}
 
 	private boolean isFML() {
-		return true;
-//		try {
-//			Class.forName("cpw.mods.fml.relauncher.FMLRelauncher", false, this.getClass().getClassLoader());
-//			return true;
-//		} catch (ClassNotFoundException ignored) {
-//			return false;
-//		}
+		return this.getClass().getClassLoader().getResource("cpw/mods/fml/relauncher/FMLRelauncher.class") != null;
 	}
 }
