@@ -1,6 +1,6 @@
 @nilmod {
 	name: "deAWT";
-	description: "WIP";
+	description: "Run Minecraft 1.4.7 without AWT Frame / Canvas!";
 	authors: "unilock";
 	version: "${version}";
 }
