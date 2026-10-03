@@ -22,12 +22,8 @@ public class MouseHelperTransformer extends MiniTransformer {
 		ctx.add(
 				Lskip,
 				INVOKESTATIC("org/lwjgl/opengl/Display", "getWidth", "()I"),
-				ICONST_2(),
-				IDIV(),
 				ISTORE(1),
 				INVOKESTATIC("org/lwjgl/opengl/Display", "getHeight", "()I"),
-				ICONST_2(),
-				IDIV(),
 				ISTORE(2)
 		);
 	}
